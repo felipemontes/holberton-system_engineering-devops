@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that displays the files in the current directory
+for file in $(ls $dir)
+do
+    echo "$file" | cut -f 2- -d '-'
+done
