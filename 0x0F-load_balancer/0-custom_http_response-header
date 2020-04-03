@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Set up an enginx server
-apt-get -y update
-apt-get -y install nginx
+# Configures a custom http response header
+sudo apt-get update -y
+sudo apt-get install nginx -y
 echo "Holberton School" > /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
-strr="server_name _;\n\trewrite ^\/redirect_me google.com permanent;"
-strr2="\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}"
-st3="\n\tadd_header X-Served-By \$hostname;"
-sed -i "s/server_name _;/$strr$st3$strr2/" /etc/nginx/sites-enabled/default
+str1="server_name _;\n\trewrite ^\/redirect_me google.com permanent;"
+str2="\n\tadd_header X-Served-By \$hostname;"
+str3="\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}"
+sed -i "s/server_name _;/$str1$str2$str3/" /etc/nginx/sites-enabled/default
 service nginx start
