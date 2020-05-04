@@ -20,6 +20,6 @@ if __name__ == '__main__':
             done += 1
             c_tasks.append(dic.get('title'))
 
-    print("Employee {} is done with tasks ({}/{})".format(name, done, task))
+    print("Employee {} is done with tasks({}/{}):".format(name, done, task))
     for title in c_tasks:
-        print("     {}".format(title))
+        print("\t {}".format(title))
