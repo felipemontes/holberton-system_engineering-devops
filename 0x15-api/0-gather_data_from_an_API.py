@@ -8,9 +8,10 @@ if __name__ == '__main__':
     todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(a[1])
     task = 0
     done = 0
+    c_tasks = []
+
     user = requests.get(users).json()
     name = user.get('name')
-    c_tasks = []
 
     to_do = requests.get(todos).json()
     for dic in to_do:
