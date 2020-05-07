@@ -11,14 +11,13 @@ def recurse(subreddit, hot_list=[], after=None):
         'User-Agent': '1.0'
     }
     params = {
-        'limit': 100,
         'after': after
     }
     response = requests.get(url, allow_redirects=False, headers=headers,
                             params=params)
-    r = response.json()
 
-    if response:
+    if response.status_code == 200:
+        r = response.json()
         x = r.get('data').get('children')
         aft_val = r.get('data').get('after')
         for i in x:
@@ -27,4 +26,4 @@ def recurse(subreddit, hot_list=[], after=None):
             return (hot_list)
         return (recurse(subreddit, hot_list, aft_val))
     else:
-        print(None)
+        return(None)
