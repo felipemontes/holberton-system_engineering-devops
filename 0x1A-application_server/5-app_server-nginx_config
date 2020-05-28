@@ -48,7 +48,7 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-        root /home/ubuntu/AirBnB_clone_v4/web_dynamic;
+        root /var/www/html;
 
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
@@ -56,21 +56,26 @@ server {
         server_name _ localhost 35.196.60.116;
 
         location /airbnb-onepage/ {
-                proxy_pass http://0.0.0.0:5000;
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
         }
 
         location /airbnb-dynamic/number_odd_or_even/ {
+                include proxy_params;
                 proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
         }
 
         location /api/ {
+                include proxy_params;
                 proxy_pass http://0.0.0.0:5002/api/;
         }
 
         location /static {
+                root /home/ubuntu/AirBnB_clone_v4/web_dynamic;
         }
 
         location / {
+                include proxy_params;
                 proxy_pass http://0.0.0.0:5003/2-hbnb/;
         }
 
